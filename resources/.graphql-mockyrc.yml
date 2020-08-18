@@ -1,0 +1,12 @@
+schema:
+  path: './resources/schema.graphql'
+
+mocks:
+  Boolean: true
+  String: Hello world2
+  Int: casual.integer(1, 1000)
+  License:
+    name: casual.title
+    body: casual.sentences(3)
+  Query:
+    licenses: mockList(4, 5)

@@ -1,0 +1,58 @@
+{
+  "name": "graphql-mocky",
+  "description": "Mock GraphQL APIs with ease!",
+  "version": "0.1.0",
+  "author": "Alex Anthony @lexanth",
+  "bin": {
+    "graphql-mocky": "./bin/run"
+  },
+  "bugs": "https://github.com/lexanth/graphql-mocky/issues",
+  "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^6.0.18",
+    "@graphql-tools/load": "^6.0.18",
+    "@graphql-tools/mock": "^6.0.18",
+    "@graphql-tools/schema": "^6.0.18",
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "casual": "^1.6.2",
+    "cosmiconfig": "^7.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/lexanth/graphql-mocky",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "graphql-mocky"
+  },
+  "repository": "lexanth/graphql-mocky",
+  "scripts": {
+    "posttest": "eslint .",
+    "prepack": "oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md",
+    "start-dev": "nodemon ./bin/run",
+    "start-dev:github": "nodemon ./bin/run -- --config ./resources/.graphql-mockyrc.yml"
+  }
+}

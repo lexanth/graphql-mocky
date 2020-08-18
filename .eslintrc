@@ -1,0 +1,8 @@
+{
+  "extends": ["oclif", "plugin:prettier/recommended"],
+  "rules": {
+    "eqeqeq": ["error", "always", {
+      "null": "ignore"
+    }]
+  }
+}
