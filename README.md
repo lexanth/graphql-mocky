@@ -120,5 +120,22 @@ Values can be specified in several ways:
 - Mock list
   Use `mockList(10)` or `mockList(1, 5)` to control the number of items in a list (otherwise random)
 - Functions
-If using a `.js` format for config, you can specify a function which will be called automatically
+  If using a `.js` format for config, you can specify a function which will be called automatically
+
+## `path`
+
+The URL path to run at. Defaults to `/graphql`.
+
+## `healthcheck`
+
+Adds a healthcheck endpoint to the server. This will respond to HTTP GET requests. Disabled by default.
+
+### `healthcheck.path`
+
+URL path for the healthcheck endpoint.
+
+### `healthecheck.result`
+
+What to send back to the healthcheck endpoint.
+
 <!-- configstop -->

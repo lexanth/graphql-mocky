@@ -9,9 +9,11 @@
   "bugs": "https://github.com/lexanth/graphql-mocky/issues",
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^6.0.18",
+    "@graphql-tools/json-file-loader": "^6.0.18",
     "@graphql-tools/load": "^6.0.18",
     "@graphql-tools/mock": "^6.0.18",
     "@graphql-tools/schema": "^6.0.18",
+    "@graphql-tools/url-loader": "^6.0.18",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",

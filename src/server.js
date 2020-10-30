@@ -7,21 +7,26 @@ const { loadSchema } = require('./load-schema');
 
 const DEFAULT_PORT = 3000;
 const DEFAULT_MOCKS = {
-  String: () => casual.text,
+  String: () => casual.title,
   Int: () => casual.integer(),
   Float: () => casual.double(),
+  Date: () => casual.date('YYYY-MM-DD'),
   DateTime: () => casual.date('YYYY-MM-DDTHH:mm:ss.SSSZZ'),
   Boolean: () => casual.coin_flip,
   ID: () => casual.uuid,
+  UUID: () => casual.uuid,
 };
 
 const MOCK_LIST_REGEX = /^mockList\((.*)\)$/;
 
 const buildMock = (value, key) => {
+  if (value === null) {
+    return () => null;
+  }
   if (typeof value === 'function') {
     return () => value(key);
   }
-  if (typeof value === 'object') {
+  if (typeof value === 'object' && !Array.isArray(value)) {
     // eslint-disable-next-line no-use-before-define
     return () => buildMocks(value);
   }
@@ -66,15 +71,23 @@ module.exports.serve = (config, log) => {
 
   const app = express();
 
+  // eslint-disable-next-line no-eq-null
+  const path = config.path == null ? '/graphql' : config.path;
   app.use(
-    '/graphql',
+    path,
     graphqlHTTP({
       schema: addMocksToSchema({ schema, mocks }),
       graphiql: useGraphiql,
     }),
   );
 
-  app.get('/', (req, res) => res.redirect('/graphql'));
+  if (config.healthcheck) {
+    app.get(config.healthcheck.path, (req, res) =>
+      res.send(config.healthcheck.result),
+    );
+  }
+
+  app.get('/', (req, res) => res.redirect(path));
 
   app.listen(port, () => {
     log(`Listening on ${port}`);

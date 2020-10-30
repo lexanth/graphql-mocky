@@ -1,5 +1,7 @@
 const { loadSchemaSync } = require('@graphql-tools/load');
 const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader');
+const { UrlLoader } = require('@graphql-tools/url-loader');
+const { JsonFileLoader } = require('@graphql-tools/json-file-loader');
 const { join } = require('path');
 
 module.exports.loadSchema = (schemaConfig, log) => {
@@ -14,6 +16,7 @@ module.exports.loadSchema = (schemaConfig, log) => {
   log(`Using schema from ${schemaPath}`);
 
   return loadSchemaSync(schemaPath, {
-    loaders: [new GraphQLFileLoader()],
+    loaders: [new GraphQLFileLoader(), new JsonFileLoader(), new UrlLoader()],
+    assumeValidSDL: true,
   });
 };
